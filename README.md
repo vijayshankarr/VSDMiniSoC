@@ -27,13 +27,49 @@ A Static Random Access Memory uses bistable latching circuitry made of transisto
 
 ## RVMYTH Core Modelling
 RVMYTH core is designed in TL Verilog on Makerchip platform. After this we use sandpiper-saas to convert TLVerilog code to Verilog code.
+RVMYTH Corre TLV : verilog/rvmyth.tlv
+
+Steps to install sandpiper-saas tool:
+
+```
+$ sudo apt install make python python3 python3-pip git iverilog gtkwave docker.io
+$ sudo chmod 666 /var/run/docker.sock
+$ cd ~
+$ pip3 install pyyaml click sandpiper-saas
+```
+
+Add the tool path to the $PATH env variable to avoid errors.
+
+Command to convert TLV to Verilog :
+
+![image](https://user-images.githubusercontent.com/94952142/148683684-e04ec697-59d0-4b3c-a63e-9c450bb2a9db.png)
+
+Output : `rvmyth.v` and `rvmyth_gen.v` files will be created in the same directory
+
+The details of rvmyth design workshop report can be found [here](https://github.com/vijayshankarr/vsd_RISC-V_workshop)
+
 
 ## PLL Modelling
-The functional verilog model for PLL is designed based on avsdpll block designed by vsd.
+Since PLL is an analog block, functional/ behavioural verilog model of PLL is created to integrate with the rvmyth core.
+The functional verilog model for PLL is designed based on avsdpll block designed by vsd interns.
 
+File : `verilog/avsdpll.v`
 
 ## Integration of PLL and RVMYTH Core
-The CLK output from PLL functional block is connected as input clock to RVMYTH core. 
+The CLK output from PLL functional block is connected as input clock to RVMYTH core. And a testbench is created to test the working snf snslyse the outputs.
+
+Files : 
+- `verilog/vsdminisoc.v` (Functional block)
+- `verilog/vsdminisoc_tb.v` (Testbench)
+
+Commands used to generate the vcd file:
+
+![image](https://user-images.githubusercontent.com/94952142/148683936-d42bf8d3-3169-41aa-8431-5f3b06c39bf5.png)
+
+Command used to view the vcd waveforms :
+
+![image](https://user-images.githubusercontent.com/94952142/148683985-3396b8b9-3f1f-4ab5-a3ca-78eddd4ea67d.png)
+
 
 ### Output :
 ![image](https://user-images.githubusercontent.com/94952142/148682998-e138dbb1-1f36-4112-bc5b-3c193d0a5d86.png)
