@@ -1,5 +1,5 @@
 # VSDMiniSoC
-this project aims at designing a SoC with RISCV based microprocessor and perform Physical Design to get the SoC ready for tapeout. Here, we are going to use open source tools and software for design and analysis, hence making an attempt to spread the word about open source chip design possibilities by setting examples.
+This project aims at designing a SoC with RISCV based microprocessor and perform Physical Design to get the SoC ready for tapeout. Here, we are going to use open source tools and software for design and analysis, hence making an attempt to spread the word about open source chip design possibilities by setting examples.
 
 # Introduction
  A System on Chip (SoC) is an integrated chip that contains all the required blocks, like CPU, internal memory, input and output blocks, hence reducing the power consumption, size
