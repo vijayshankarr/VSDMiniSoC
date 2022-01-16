@@ -108,7 +108,7 @@ Command used to view the vcd waveforms :
 
 
 ## Integration of DAC and RVMYTH Core
-The 10 bit output from RVMYTH core is connected to DAC and the output from DAC is taken out as final out of vsdminisoc. And a testbench is created to test the working and analyse the outputs.
+The 10 bit output from RVMYTH core is connected to DAC and the output from DAC is taken out as final output of vsdMiniSoC. And a testbench is created to test the working and analyse the outputs.
 
 Files : 
 - `verilog/avsddac.v` (DAC Functional block)
