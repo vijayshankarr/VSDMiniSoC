@@ -1,16 +1,19 @@
 module vsdminisoc (
-   output wire [9:0] OUT,
+   output wire OUT,
    input  wire reset,
    input  wire VCO_IN,
    input  wire ENb_CP,
    input  wire ENb_VCO,
-   input  wire REF
+   input  wire REF,
+   //input  wire VREFL,
+   input  wire VREFH
 );
 
    wire CLK;
+   wire [9:0] RV_TO_DAC;
    
    rvmyth core (
-      .OUT(OUT),
+      .OUT(RV_TO_DAC),
       .CLK(CLK),
       .reset(reset)
    );
@@ -21,5 +24,13 @@ module vsdminisoc (
       .ENb_CP(ENb_CP),
       .ENb_VCO(ENb_VCO),
       .REF(REF)
-   );   
+   );  
+
+   avsddac dac (
+      .OUT(OUT),
+      .D(RV_TO_DAC),
+      // .VREFL(VREFL),
+      .VREFH(VREFH)   
+   );
+    
 endmodule
