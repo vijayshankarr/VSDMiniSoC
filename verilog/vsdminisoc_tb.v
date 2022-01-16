@@ -1,6 +1,7 @@
 `timescale 1ns / 1ps
 `include "vsdminisoc.v"
 `include "avsdpll.v"
+`include "avsddac.v"
 `include "rvmyth.v"
 `include "clk_gate.v"
 
@@ -10,7 +11,9 @@ module vsdminisoc_tb;
    reg       ENb_CP;
    reg       ENb_VCO;
    reg       REF;
-   reg [9:0] OUT;
+   wire real OUT;
+   reg  real VREFH;
+   reg  real VREFL;
 
    vsdminisoc uut (
       .OUT(OUT),
@@ -19,10 +22,14 @@ module vsdminisoc_tb;
       .ENb_CP(ENb_CP),
       .ENb_VCO(ENb_VCO),
       .REF(REF),
+      // .VREFL(VREFL),
+      .VREFH(VREFH)
       );
 
    initial begin
       reset = 0;
+      VREFL = 0.0;
+      VREFH = 3.3;
       {REF, ENb_VCO} = 0;
       VCO_IN = 1'b0 ;
       
@@ -31,7 +38,7 @@ module vsdminisoc_tb;
    end
    
    initial begin
-      $dumpfile("rvmyth_pll.vcd");
+      $dumpfile("vsdminisoc.vcd");
       $dumpvars(0, vsdminisoc_tb);
    end
  
